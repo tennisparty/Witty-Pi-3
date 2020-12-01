@@ -124,7 +124,6 @@ if [ $ERR -eq 0 ]; then
     cd ..
     chown -R $(logname):$(id -g -n $(logname)) wittypi || ((ERR++))
     sleep 2
-    rm wittyPi.zip
   fi
 fi
 
