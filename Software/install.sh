@@ -103,29 +103,23 @@ if [ $ERR -eq 0 ]; then
 fi
 
 # install wittyPi
-if [ $ERR -eq 0 ]; then
-  echo '>>> Install wittypi'
-  if [ -d "wittypi" ]; then
-    echo 'Seems wittypi is installed already, skip this step.'
-  else
-    mv /home/pi/Witty-Pi-3/Software/wittypi /home/pi/wittypi
-    cd /home/pi/wittypi
-    chmod +x wittyPi.sh
-    chmod +x daemon.sh
-    chmod +x syncTime.sh
-    chmod +x runScript.sh
-    chmod +x afterStartup.sh
-    chmod +x beforeShutdown.sh
-    sed -e "s#/home/pi/wittypi#$DIR#g" init.sh >/etc/init.d/wittypi
-    chmod +x /etc/init.d/wittypi
-    update-rc.d wittypi defaults || ((ERR++))
-    touch wittyPi.log
-    touch schedule.log
-    cd ..
-    chown -R $(logname):$(id -g -n $(logname)) wittypi || ((ERR++))
-    sleep 2
-  fi
-fi
+mv /home/pi/Witty-Pi-3/Software/wittypi /home/pi/wittypi
+cd /home/pi/wittypi
+chmod +x wittyPi.sh
+chmod +x daemon.sh
+chmod +x syncTime.sh
+chmod +x runScript.sh
+chmod +x afterStartup.sh
+chmod +x beforeShutdown.sh
+sed -e "s#/home/pi/wittypi#$DIR#g" init.sh >/etc/init.d/wittypi
+chmod +x /etc/init.d/wittypi
+update-rc.d wittypi defaults || ((ERR++))
+touch wittyPi.log
+touch schedule.log
+cd ..
+chown -R $(logname):$(id -g -n $(logname)) wittypi || ((ERR++))
+sleep 2
+
 
 echo
 if [ $ERR -eq 0 ]; then
