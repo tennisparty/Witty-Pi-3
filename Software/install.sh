@@ -108,9 +108,8 @@ if [ $ERR -eq 0 ]; then
   if [ -d "wittypi" ]; then
     echo 'Seems wittypi is installed already, skip this step.'
   else
-    wget http://www.uugear.com/repo/WittyPi3/LATEST -O wittyPi.zip || ((ERR++))
-    unzip wittyPi.zip -d wittypi || ((ERR++))
-    cd wittypi
+    mv /home/pi/Witty-Pi-3/Software/wittypi /home/pi/wittypi
+    cd /home/pi/wittypi
     chmod +x wittyPi.sh
     chmod +x daemon.sh
     chmod +x syncTime.sh
